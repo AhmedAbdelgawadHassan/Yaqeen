@@ -9,32 +9,28 @@ class QuranView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        SafeArea(
-          child: GestureDetector(
-            onTap: () => FocusScope.of(context).unfocus(),
-            child: Scaffold(
-              body: CustomScrollView(
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: LogoWidget(height: 100,),
-                  ),
-                  SliverToBoxAdapter(
-                    child: SearchTextfield(),
-                  ),
-                  SliverToBoxAdapter(
-                    child: MostrecentlySection(),
-                  ),
-                  SliverFillRemaining(
-                    child: SuraslistSection(),
-                  )
-                ],
+    return SafeArea(
+      child: GestureDetector(
+        onTap: () => FocusScope.of(context).unfocus(),
+        child: Scaffold(
+          body: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: LogoWidget(height: 100,),
+              ),
+              SliverToBoxAdapter(
+                child: SearchTextfield(),
+              ),
+              SliverToBoxAdapter(
+                child: MostrecentlySection(),
+              ),
+              SliverFillRemaining(
+                child: SuraslistSection(),
               )
-            ),
-          ),
+            ],
+          )
         ),
-      ],
+      ),
     );
   }
 }

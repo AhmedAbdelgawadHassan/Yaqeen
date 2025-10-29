@@ -19,7 +19,7 @@ class _RootState extends State<Root> {
   int currentPage = 0;
 
   final List<Widget> views = [
-    QuranView(),
+    QuranView(),  //finished
     HadithView(),
     SebhaView(),
     RadioView(),

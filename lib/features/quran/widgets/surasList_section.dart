@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:islami/features/quran/data/models/sura_model.dart';
+import 'package:islami/features/quran/views/suraText_view.dart';
 import 'package:islami/features/quran/widgets/sura_item.dart';
 import 'package:islami/shared/customText.dart';
 
@@ -23,13 +24,18 @@ class SuraslistSection extends StatelessWidget {
             itemBuilder: (context, index) {
              return  Padding(
               padding: EdgeInsets.only(bottom: 10),
-               child: SuraItem(
-                suraModel: SuraModel(
-                  suraEnglishName: 'Al-Fatiha',
-                   suraArabicName: 'الفاتحه',
-                    versesNumber: 122,
-                     suraNumer: 1),
-                           ),
+               child: GestureDetector(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => SuratextView(),));
+                },
+                 child: SuraItem(
+                  suraModel: SuraModel(
+                    suraEnglishName: 'Al-Fatiha',
+                     suraArabicName: 'الفاتحه',
+                      versesNumber: 122,
+                       suraNumer: 1),
+                             ),
+               ),
              );
            },),
          )

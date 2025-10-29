@@ -20,7 +20,7 @@ class MostrecentlyCard extends StatelessWidget {
          boxShadow: [
           BoxShadow(
             color: Colors.grey,
-            blurRadius:10,
+            blurRadius:5,
           )
          ]
       ),
