@@ -54,15 +54,13 @@ class _SebhaViewState extends State<SebhaView> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: const Color(0xFFF8F5EF),
         body: SingleChildScrollView(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               const LogoWidget(),
-              const Gap(30),
-
+              const Gap(10),
               // Dropdown
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
@@ -151,8 +149,8 @@ class _SebhaViewState extends State<SebhaView> {
               const Gap(50),
               // Counter Box
               Container(
-                width: 120,
-                height: 100,
+                width: 110,
+                height: 90,
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -185,9 +183,8 @@ class _SebhaViewState extends State<SebhaView> {
                   ElevatedButton(
                     onPressed: incrementCount,
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
-                      shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(25),
+                      backgroundColor:AppColors.goldPrimaryColor,
+                      padding: const EdgeInsets.all(20),
                       elevation: 6,
                     ),
                     child: const Icon(Icons.add, color: Colors.black, size: 32),
@@ -201,7 +198,7 @@ class _SebhaViewState extends State<SebhaView> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.white,
                       shape: const CircleBorder(),
-                      padding: const EdgeInsets.all(25),
+                      padding: const EdgeInsets.all(20),
                       elevation: 6,
                     ),
                     child: const Icon(Icons.refresh, color: Colors.black, size: 30),

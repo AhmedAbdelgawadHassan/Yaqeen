@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami/core/constants/app_colors.dart';
-import 'package:islami/root.dart';
+import 'package:islami/features/onboarding/views/onboardingRoot.dart';
 
 void main()
 {
@@ -14,7 +14,7 @@ class Islami extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Root(),
+      home: OnboardingRoot(),
       theme: ThemeData(
         scaffoldBackgroundColor: AppColors.darkPrimaryColor,
       ),

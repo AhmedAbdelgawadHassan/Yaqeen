@@ -20,8 +20,8 @@ class _RootState extends State<Root> {
 
   final List<Widget> views = [
     QuranView(),  //finished
-    HadithView(),
-    SebhaView(),
+    HadithView(), // finished
+    SebhaView(),  // finished
     RadioView(),
     TimeView(),
   ];
