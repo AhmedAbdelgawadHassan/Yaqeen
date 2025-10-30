@@ -22,7 +22,7 @@ class _RootState extends State<Root> {
     QuranView(),  //finished
     HadithView(), // finished
     SebhaView(),  // finished
-    RadioView(),
+    RadioView(),  // finished
     TimeView(),
   ];
 
@@ -30,6 +30,7 @@ class _RootState extends State<Root> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        physics: NeverScrollableScrollPhysics(),
         controller: controller,
         onPageChanged: (index) {
           setState(() {

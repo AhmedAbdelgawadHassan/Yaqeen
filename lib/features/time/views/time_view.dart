@@ -1,13 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
+import 'package:islami/features/time/data/models/pray_model.dart';
+import 'package:islami/features/time/widgets/azkar_section.dart';
+import 'package:islami/features/time/widgets/prayers_time.dart';
+import 'package:islami/shared/logo_widget.dart';
 
 class TimeView extends StatelessWidget {
   const TimeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Time View'),
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 15),
+          child: Column(
+            children: [
+              LogoWidget(height: 130),
+              PrayersTime(
+                prayModel: PrayModel(
+                  name: 'ASR',
+                  time: '04:25',
+                  day: 'Monday',
+                  hijriDate: '09 Muh ',
+                  birthDatel: '16 Jul ',
+                ),
+              ),
+              Gap(25),
+              AzkarSection(),
+            ],
+          ),
+        ),
       ),
     );
   }
