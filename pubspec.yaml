@@ -38,6 +38,8 @@ dependencies:
   gap: ^3.0.1
   clippy_flutter: ^2.0.0-nullsafety.1
   flutter_custom_clippers: ^2.1.0
+  dio: ^5.9.0
+  audioplayers: ^6.5.1
 
 dev_dependencies:
   flutter_test:

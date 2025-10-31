@@ -57,7 +57,7 @@ class _PrayersTimeState extends State<PrayersTime> {
           ),
           child: Container(
             height: 300,
-            padding: EdgeInsets.only(top: 15),
+            padding: EdgeInsets.only(top: 40,right: 5,left: 5),
             decoration: BoxDecoration(
               color: AppColors.goldPrimaryColor,
               borderRadius: BorderRadius.only(
@@ -79,7 +79,7 @@ class _PrayersTimeState extends State<PrayersTime> {
                   fontSize: 18,
                   color: Colors.black,
                 ),
-                Gap(75),
+                Gap(55),
               SizedBox(
                 height: 145,
                 child: ListView.builder(
