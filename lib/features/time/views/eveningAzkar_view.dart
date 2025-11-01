@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/features/time/data/eveningAzkar_data.dart';
 
 class EveningAzkarView extends StatefulWidget {
@@ -22,17 +23,17 @@ class _EveningAzkarViewState extends State<EveningAzkarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFAF6EE),
+      backgroundColor: AppColors.darkPrimaryColor, // background color
       appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color(0xffF1E3C6),
+        backgroundColor: AppColors.goldPrimaryColor,
+        elevation: 3,
         centerTitle: true,
         title: const Text(
-          "أذكار المساء ",
+          "أذكار المساء",
           style: TextStyle(
+            color: AppColors.darkPrimaryColor,
             fontWeight: FontWeight.bold,
-            color: Color(0xff4A3B1D),
-            fontSize: 22,
+            fontSize: 24,
           ),
         ),
       ),
@@ -41,60 +42,67 @@ class _EveningAzkarViewState extends State<EveningAzkarView> {
         itemCount: _eveningAzkar.length,
         itemBuilder: (context, index) {
           final item = _eveningAzkar[index];
-          final isDone = item["count"] == 0;
+          final bool isDone = item["count"] == 0;
 
           return GestureDetector(
             onTap: () => _decrementCount(index),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut,
-              margin: const EdgeInsets.only(bottom: 16),
+              margin: const EdgeInsets.only(bottom: 18),
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
                 gradient: isDone
                     ? const LinearGradient(
-                        colors: [Color(0xffB2E3B6), Color(0xffD6F6D1)],
+                        colors: [
+                          Color(0xFF9BD9E7),
+                          Color(0xFFC7F4F9),
+                        ],
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                       )
                     : const LinearGradient(
-                        colors: [Color(0xffF9E8B1), Color(0xffF7D77A)],
+                        colors: [
+                          Color(0xFFFFE29F),
+                          Color(0xFFFFC53E),
+                        ],
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                       ),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.brown.withOpacity(0.15),
-                    blurRadius: 8,
-                    offset: const Offset(2, 4),
+                    color: Colors.black.withOpacity(0.15),
+                    blurRadius: 10,
+                    offset: const Offset(0, 6),
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //Azkar text
                   Text(
                     item["text"],
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      fontSize: 17,
-                      height: 1.7,
-                      color: isDone ? Colors.black87 : const Color(0xff4A3B1D),
+                      fontSize: 18,
+                      height: 1.8,
                       fontWeight: FontWeight.w600,
+                      color: isDone
+                          ? Colors.black87
+                          : AppColors.darkPrimaryColor,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Row(
+                  const SizedBox(height: 20),
+                  // Azkar counter
+                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      //Azkar count
                       Container(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 14, vertical: 8),
                         decoration: BoxDecoration(
-                          color: const Color(0xff4A3B1D),
+                          color: AppColors.darkPrimaryColor,
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Text(
@@ -102,18 +110,18 @@ class _EveningAzkarViewState extends State<EveningAzkarView> {
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         ),
                       ),
-                       //Azkar icon
                       AnimatedSwitcher(
-                        duration: const Duration(milliseconds: 300),
+                        duration: const Duration(milliseconds: 400),
                         child: isDone
                             ? const Icon(Icons.check_circle,
-                                color: Colors.green, size: 28)
+                                color: Colors.green, size: 30)
                             : const Icon(Icons.touch_app,
-                                color: Color(0xff836A3E), size: 26),
-                      )
+                                color: Colors.black87, size: 28),
+                      ),
                     ],
                   ),
                 ],

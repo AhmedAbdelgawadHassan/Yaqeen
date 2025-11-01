@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:islami/core/constants/app_colors.dart';
-import 'package:islami/features/radio/data/models/reciters_model.dart';
+import 'package:islami/features/radioReciters/data/models/reciters_model.dart';
 import 'package:islami/shared/customText.dart';
 
 class RecitersItem extends StatelessWidget {

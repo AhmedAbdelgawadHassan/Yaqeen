@@ -2,8 +2,8 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:islami/core/services/radio_service/radio_service.dart';
-import 'package:islami/features/radio/data/models/radio_model.dart';
-import 'package:islami/features/radio/widgets/radio_item.dart';
+import 'package:islami/features/radioReciters/data/models/radio_model.dart';
+import 'package:islami/features/radioReciters/widgets/radio_item.dart';
 
 class RadioBody extends StatefulWidget {
   const RadioBody({super.key});

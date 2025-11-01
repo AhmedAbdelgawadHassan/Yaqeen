@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/features/hadith/views/hadith_view.dart';
 import 'package:islami/features/quran/views/quran_view.dart';
-import 'package:islami/features/radio/views/radio_view.dart';
+import 'package:islami/features/radioReciters/views/radio_reciters_view.dart';
 import 'package:islami/features/sebha/views/sebha_view.dart';
 import 'package:islami/features/time/views/time_view.dart';
 
@@ -20,8 +20,8 @@ class _RootState extends State<Root> {
 
   final List<Widget> views = [
     const QuranView(),
+    const RadioRecitersView(),
     const HadithView(),
-    const RadioView(),
     const SebhaView(),
     const TimeView(),
   ];
@@ -83,15 +83,15 @@ class _RootState extends State<Root> {
                   label: 'Quran',
                 ),
                 BottomNavigationBarItem(
+                  icon: Icon(Icons.headphones),
+                  label: 'Reciters',
+                ),
+                 BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.bookOpen),
                   label: 'Hadith',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.radio),
-                  label: 'Radio',
-                ),
-                BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.infinity),
+                  icon: Icon(Icons.brightness_low),
                   label: 'Sebha',
                 ),
                 BottomNavigationBarItem(

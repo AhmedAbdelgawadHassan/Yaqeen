@@ -2,7 +2,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:islami/core/constants/app_colors.dart';
-import 'package:islami/features/radio/data/models/radio_model.dart';
+import 'package:islami/features/radioReciters/data/models/radio_model.dart';
 import 'package:islami/shared/customText.dart';
 
 class RadioItem extends StatefulWidget {

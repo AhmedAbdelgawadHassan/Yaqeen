@@ -1,6 +1,5 @@
-// ignore_for_file: prefer_final_fields
-
 import 'package:flutter/material.dart';
+import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/features/time/data/morningAzkar_data.dart';
 
 class MorningAzkarView extends StatefulWidget {
@@ -11,7 +10,7 @@ class MorningAzkarView extends StatefulWidget {
 }
 
 class _MorningAzkarViewState extends State<MorningAzkarView> {
-  List<Map<String, dynamic>> _morningAzkar = MorningazkarData.morningAzkar;
+  List<Map<String, dynamic>> _morningAzkar = MorningazkarData.morningAzkar;//LIST OF MORNING AZKAR
 
   void _decrementCount(int index) {
     setState(() {
@@ -24,17 +23,17 @@ class _MorningAzkarViewState extends State<MorningAzkarView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFFFDF7),
+      backgroundColor: AppColors.darkPrimaryColor, // Background color
       appBar: AppBar(
-        elevation: 0,
+        backgroundColor: AppColors.goldPrimaryColor,
+        elevation: 3,
         centerTitle: true,
-        backgroundColor: const Color(0xffFDE7AA),
         title: const Text(
-          "أذكار الصباح ",
+          "أذكار الصباح",
           style: TextStyle(
-            color: Color(0xff4A3B1D),
+            color: AppColors.darkPrimaryColor,
             fontWeight: FontWeight.bold,
-            fontSize: 22,
+            fontSize: 24,
           ),
         ),
       ),
@@ -42,55 +41,61 @@ class _MorningAzkarViewState extends State<MorningAzkarView> {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
         itemCount: _morningAzkar.length,
         itemBuilder: (context, index) {
-          final  item = _morningAzkar[index];
-          final bool isDone = item["count"] == 0;  // isDone = True if count = 0
+          final item = _morningAzkar[index];
+          final bool isDone = item["count"] == 0;
 
           return GestureDetector(
             onTap: () => _decrementCount(index),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 300),
+              duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut,
-              margin: const EdgeInsets.only(bottom: 16),
+              margin: const EdgeInsets.only(bottom: 18),
               padding: const EdgeInsets.all(18),
               decoration: BoxDecoration(
                 gradient: isDone
                     ? const LinearGradient(
-                        colors: [Color(0xffB6E5C9), Color(0xffDDFAD8)],
+                        colors: [
+                          Color(0xFF9BE7A6),
+                          Color(0xFFD4F8C8),
+                        ],
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                       )
                     : const LinearGradient(
-                        colors: [Color(0xffFFF0C1), Color(0xffFFE59A)],
+                        colors: [
+                          Color(0xFFFFE29F),
+                          Color(0xFFFFC53E),
+                        ],
                         begin: Alignment.topRight,
                         end: Alignment.bottomLeft,
                       ),
                 borderRadius: BorderRadius.circular(20),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.brown.withOpacity(0.15),
-                    blurRadius: 8,
-                    offset: const Offset(2, 4),
+                    color: Colors.black.withOpacity(0.15),
+                    blurRadius: 10,
+                    offset: const Offset(0, 6),
                   ),
                 ],
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  //Azkar text
+                  // نص الذكر
                   Text(
                     item["text"],
                     textAlign: TextAlign.right,
                     style: TextStyle(
-                      fontSize: 17,
-                      height: 1.7,
+                      fontSize: 18,
+                      height: 1.8,
                       fontWeight: FontWeight.w600,
                       color: isDone
                           ? Colors.black87
-                          : const Color(0xff4A3B1D), // لون مريح للقراءة
+                          : AppColors.darkPrimaryColor,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  //Azkar count
+                  const SizedBox(height: 20),
+                  // العداد والأيقونة
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -98,7 +103,7 @@ class _MorningAzkarViewState extends State<MorningAzkarView> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 14, vertical: 8),
                         decoration: BoxDecoration(
-                          color: const Color(0xff4A3B1D),
+                          color: AppColors.darkPrimaryColor,
                           borderRadius: BorderRadius.circular(14),
                         ),
                         child: Text(
@@ -106,17 +111,17 @@ class _MorningAzkarViewState extends State<MorningAzkarView> {
                           style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
+                            fontSize: 16,
                           ),
                         ),
                       ),
-                      //Azkar icon
-                      AnimatedSwitcher(  // to Switch between icons
-                        duration: const Duration(milliseconds: 300),
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 400),
                         child: isDone
                             ? const Icon(Icons.check_circle,
-                                color: Colors.green, size: 28)
+                                color: Colors.green, size: 30, )
                             : const Icon(Icons.touch_app,
-                                color: Color(0xff836A3E), size: 26),
+                                color: Colors.black87, size: 28,),
                       ),
                     ],
                   ),

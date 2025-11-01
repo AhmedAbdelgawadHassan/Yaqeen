@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:islami/features/radio/data/models/reciters_model.dart';
-import 'package:islami/features/radio/widgets/reciters_item.dart';
+import 'package:islami/features/radioReciters/data/models/reciters_model.dart';
+import 'package:islami/features/radioReciters/widgets/reciters_item.dart';
 
 
 class RecitersBody extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:islami/features/radio/data/models/radio_model.dart';
+import 'package:islami/features/radioReciters/data/models/radio_model.dart';
 
 class RadioService {
   final Dio dio;

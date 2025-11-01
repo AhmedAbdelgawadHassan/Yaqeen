@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:islami/core/constants/app_colors.dart';
-import 'package:islami/features/radio/widgets/radio_body.dart';
-import 'package:islami/features/radio/widgets/radio_reciters_container.dart';
-import 'package:islami/features/radio/widgets/reciters_body.dart';
+import 'package:islami/features/radioReciters/widgets/radio_body.dart';
+import 'package:islami/features/radioReciters/widgets/radio_reciters_container.dart';
+import 'package:islami/features/radioReciters/widgets/reciters_body.dart';
 import 'package:islami/shared/logo_widget.dart';
 
-class RadioView extends StatefulWidget {
-  const RadioView({super.key});
+class RadioRecitersView extends StatefulWidget {
+  const RadioRecitersView ({super.key});
 
   @override
-  State<RadioView> createState() => _RadioViewState();
+  State<RadioRecitersView> createState() => _RadioRecitersViewState();
 }
 
-class _RadioViewState extends State<RadioView> {
+class _RadioRecitersViewState extends State<RadioRecitersView> {
   int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _RadioViewState extends State<RadioView> {
             children: [
               Gap(10),
               LogoWidget(
-                height: 120,
+                height: 100,
               ),
               Gap(10),
               SizedBox(
@@ -53,7 +53,7 @@ class _RadioViewState extends State<RadioView> {
                             textColor: currentIndex == index
                                 ? Colors.black
                                 : Colors.white,
-                            text: index == 0 ? 'Radio' : 'Reciters',  // change text according to index
+                            text: index == 0 ? 'Reciters' : 'Radio',  // change text according to index
                           ),
                         ),
                       ),
@@ -62,7 +62,7 @@ class _RadioViewState extends State<RadioView> {
                 ),
               ),
               Gap(30),
-              currentIndex == 0 ? RadioBody() : RecitersBody(),
+              currentIndex == 0 ? RecitersBody(): RadioBody(),
               // change body according to index (container Clicked)
             ],
           ),
