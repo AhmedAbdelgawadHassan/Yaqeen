@@ -21,8 +21,8 @@ class _RootState extends State<Root> {
   final List<Widget> views = [
     const QuranView(),
     const HadithView(),
-    const SebhaView(),
     const RadioView(),
+    const SebhaView(),
     const TimeView(),
   ];
 
@@ -87,12 +87,12 @@ class _RootState extends State<Root> {
                   label: 'Hadith',
                 ),
                 BottomNavigationBarItem(
-                  icon: Icon(FontAwesomeIcons.infinity),
-                  label: 'Sebha',
-                ),
-                BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.radio),
                   label: 'Radio',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.infinity),
+                  label: 'Sebha',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(FontAwesomeIcons.solidClock),
