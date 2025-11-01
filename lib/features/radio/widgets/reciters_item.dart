@@ -32,17 +32,17 @@ class RecitersItem extends StatelessWidget {
             right: 0,
             child: Customtext(text: recitersModel.recitersName,color: Colors.black,fontSize: 20,)),
           Image(image: AssetImage('assets/images/root/soundWave 1.png')),
-          Positioned(
-            left: 120,
-            child: Row(
-              children: [
-                IconButton(onPressed: () {
-                }, icon: Icon(Icons.play_arrow,color: Colors.black,size: 60,)),
-                 IconButton(onPressed: () {
-                }, icon: Icon(Icons.mic,color: Colors.black,size: 40,)),
-              ],
-            ),
-          )
+          // Positioned(
+          //   left: 120,
+          //   child: Row(
+          //     children: [
+          //       IconButton(onPressed: () {
+          //       }, icon: Icon(Icons.play_arrow,color: Colors.black,size: 60,)),
+          //        IconButton(onPressed: () {
+          //       }, icon: Icon(Icons.mic,color: Colors.black,size: 40,)),
+          //     ],
+          //   ),
+          // )
         ],
       ),
     );

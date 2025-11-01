@@ -13,7 +13,6 @@ class RadioRecitersContainer extends StatelessWidget {
       alignment: Alignment.center,
       duration: Duration(milliseconds: 700),
       width: 175,
-      margin: EdgeInsets.only(left: 5,right: 5),
       decoration: BoxDecoration(
         color: containerColor,
         borderRadius: BorderRadius.circular(15),

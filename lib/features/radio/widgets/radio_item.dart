@@ -40,7 +40,7 @@ class _RadioItemState extends State<RadioItem>
     super.dispose();
   }
 
- // build wave bar
+  // build wave bar
   Widget _buildWaveBar(int index) {
     return AnimatedBuilder(
       animation: _controller,

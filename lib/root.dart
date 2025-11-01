@@ -19,51 +19,89 @@ class _RootState extends State<Root> {
   int currentPage = 0;
 
   final List<Widget> views = [
-    QuranView(),  //finished
-    HadithView(), // finished
-    SebhaView(),  // finished
-    RadioView(),  // finished
-    TimeView(),
+    const QuranView(),
+    const HadithView(),
+    const SebhaView(),
+    const RadioView(),
+    const TimeView(),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: PageView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: controller,
-        onPageChanged: (index) {
-          setState(() {
-            currentPage = index;
-          });
-        },
-        children: views,
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: AppColors.goldPrimaryColor,
-        iconSize: 25,
-        selectedIconTheme: IconThemeData(size: 30),
-        selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.black,
-        
-      elevation: 0,
-        currentIndex: currentPage,
-        onTap: (index) {
-          setState(() {
-            currentPage = index;
-          });
-          controller.jumpToPage(index);
-        },
-        items: const [
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.bookQuran), label: 'Quran'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.bookOpen), label: 'Hadith'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.infinity), label: 'Sebha'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.radio), label: 'Radio'),
-          BottomNavigationBarItem(icon: Icon(FontAwesomeIcons.solidClock), label: 'Time'),
-
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: controller,
+          onPageChanged: (index) => setState(() => currentPage = index),
+          children: views,
+        ),
+        bottomNavigationBar: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                AppColors.goldPrimaryColor.withOpacity(0.9),
+                Colors.amber.shade600,
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.15),
+                blurRadius: 10,
+                offset: const Offset(0, -3),
+              ),
+            ],
+          ),
+          child: ClipRRect(
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(25),
+              topRight: Radius.circular(25),
+            ),
+            child: BottomNavigationBar(
+              backgroundColor: Colors.transparent,
+              type: BottomNavigationBarType.fixed,
+              elevation: 0,
+              currentIndex: currentPage,
+              selectedItemColor: Colors.white,
+              unselectedItemColor: Colors.black87,
+              selectedIconTheme: const IconThemeData(size: 28),
+              unselectedIconTheme: const IconThemeData(size: 22),
+              selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+              onTap: (index) {
+                setState(() => currentPage = index);
+                controller.jumpToPage(index);
+              },
+              items: const [
+                BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.bookQuran),
+                  label: 'Quran',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.bookOpen),
+                  label: 'Hadith',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.infinity),
+                  label: 'Sebha',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.radio),
+                  label: 'Radio',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(FontAwesomeIcons.solidClock),
+                  label: 'Time',
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

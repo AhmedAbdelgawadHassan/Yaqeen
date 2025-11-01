@@ -68,6 +68,8 @@ flutter:
     - assets/images/onboarding/
     - assets/images/logo/
     - assets/images/root/
+    - assets/files/suras/
+    - assets/files/hadith/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

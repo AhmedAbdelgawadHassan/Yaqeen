@@ -21,17 +21,20 @@ class _RadioViewState extends State<RadioView> {
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 15),
+          padding: EdgeInsets.symmetric(horizontal: 5),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Gap(10),
-              LogoWidget(),
+              LogoWidget(
+                height: 120,
+              ),
               Gap(10),
               SizedBox(
                 height: 40,
                 child: ListView.builder(
                   itemCount: 2,
+                  shrinkWrap: true,
                   physics: NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) {
@@ -40,16 +43,18 @@ class _RadioViewState extends State<RadioView> {
                         currentIndex = index;
                         setState(() {});
                       },
-                      child: Padding(
-                        padding: EdgeInsets.zero,
-                        child: RadioRecitersContainer(
-                          containerColor: currentIndex == index
-                              ? AppColors.goldPrimaryColor
-                              : Color(0xff2D2C2B),
-                          textColor: currentIndex == index
-                              ? Colors.black
-                              : Colors.white,
-                          text: index == 0 ? 'Radio' : 'Reciters',
+                      child: Center(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 7.5),
+                          child: RadioRecitersContainer(
+                            containerColor: currentIndex == index
+                                ? AppColors.goldPrimaryColor
+                                : Color(0xff2D2C2B),
+                            textColor: currentIndex == index
+                                ? Colors.black
+                                : Colors.white,
+                            text: index == 0 ? 'Radio' : 'Reciters',  // change text according to index
+                          ),
                         ),
                       ),
                     );
