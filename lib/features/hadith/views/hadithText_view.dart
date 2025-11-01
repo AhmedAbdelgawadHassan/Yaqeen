@@ -1,73 +1,109 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/shared/customText.dart';
 
 class HadithtextView extends StatelessWidget {
-  const HadithtextView({super.key});
+  const HadithtextView({super.key, required this.hadithText});
+  final String hadithText;
+  
 
   @override
   Widget build(BuildContext context) {
+    final String firstLine=hadithText.split('\n').first;
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(Icons.arrow_back),
-            color: AppColors.goldPrimaryColor,
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [
+                Color(0xff0f2b24),
+                Color(0xff091815),
+                Colors.black,
+              ],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
           ),
-          centerTitle: true,
-        ),
-        body: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Column(
-            children: [
-              Gap(10),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image(
-                    image: AssetImage('assets/images/root/img_left_corner.png'),
-                    width: 92,
-                    height: 92,
-                  ),
-                  Spacer(),
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Customtext(text: 'الحديث الأول', fontSize: 20),
-                  ),
-                  Spacer(),
-                  Image(
-                    image: AssetImage(
-                      'assets/images/root/img_right_corner (1).png',
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Column(
+              children: [
+                const Gap(60),
+                // Hadith title
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Image(
+                      image: AssetImage('assets/images/root/img_left_corner.png'),
+                      width: 75,
+                      height: 75,
                     ),
-                    width: 92,
-                    height: 92,
-                  ),
-                ],
-              ),
-              Gap(20),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: 1,
-                  itemBuilder: (context, index) => Customtext(
-                    text:
-                        'عن أمـيـر المؤمنـين أبي حـفص عمر بن الخطاب رضي الله عنه ، قال : سمعت رسول الله صلى الله عـليه وسلم يـقـول : ( إنـما الأعـمـال بالنيات وإنـمـا لكـل امـرئ ما نـوى . فمن كـانت هجرته إلى الله ورسولـه فهجرتـه إلى الله ورسـوله ومن كانت هجرته لـدنيا يصـيبها أو امرأة ينكحها فهجرته إلى ما هاجر إليه ). رواه إمام المحد ثين أبـو عـبـد الله محمد بن إسماعـيل بن ابراهـيـم بن المغـيره بن بـرد زبه البخاري الجعـفي [رقم:1] وابـو الحسـيـن مسلم بن الحجاج بن مـسلم القـشـيري الـنيسـابـوري [رقم :1907] رضي الله عنهما في صحيحيهما اللذين هما أصح الكتب المصنفه.',
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    maxLines: 1000,
+                    const Spacer(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Customtext(
+                        text: firstLine,   // display only the first line of all hadith (contains hadith Number)
+                        fontSize: 22,
+                        color: AppColors.goldPrimaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const Spacer(),
+                    const Image(
+                      image: AssetImage('assets/images/root/img_right_corner (1).png'),
+                      width: 75,
+                      height: 75,
+                    ),
+                  ],
+                ),
+
+                const Gap(30),
+               // Hadith text
+                Expanded(
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.07),
+                      borderRadius: BorderRadius.circular(22),
+                      border: Border.all(
+                        color: AppColors.goldPrimaryColor.withOpacity(0.2),
+                      ),
+                    ),
+                    child: Scrollbar(
+                      thumbVisibility: true,
+                      radius: const Radius.circular(20),
+                      child: SingleChildScrollView(
+                        physics: const BouncingScrollPhysics(),
+                        child: Customtext(
+                          text:hadithText,
+                          fontSize: 20,
+                          color: Colors.white,
+                          height: 1.9,
+                          textAlign: TextAlign.justify,
+                          fontWeight: FontWeight.w500,
+                          maxLines: 1000,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
-              ),
-              Image(
-                image: AssetImage(
-                  'assets/images/root/img_bottom_decoration.png',
+
+                const Gap(20),
+
+                Opacity(
+                  opacity: 0.8,
+                  child: Image.asset(
+                    'assets/images/root/img_bottom_decoration.png',
+                    width: 250,
+                  ),
                 ),
-              ),
-            ],
+
+                const Gap(15),
+              ],
+            ),
           ),
         ),
       ),

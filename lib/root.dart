@@ -68,7 +68,7 @@ class _RootState extends State<Root> {
               type: BottomNavigationBarType.fixed,
               elevation: 0,
               currentIndex: currentPage,
-              selectedItemColor: Colors.white,
+              selectedItemColor: Colors.green.shade900,
               unselectedItemColor: Colors.black87,
               selectedIconTheme: const IconThemeData(size: 28),
               unselectedIconTheme: const IconThemeData(size: 22),
