@@ -1,12 +1,16 @@
+
 import 'package:flutter/material.dart';
 import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/features/onboarding/views/onboardingRoot.dart';
 
-void main()
- {
-  runApp(Islami(),);
 
+
+void main() async {
+
+  runApp(const Islami());
 }
+
+
 
 class Islami extends StatelessWidget {
   const Islami({super.key});

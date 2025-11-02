@@ -1,134 +1,133 @@
-import 'dart:async' show Timer;
-
+// ignore_for_file: deprecated_member_use
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:islami/core/constants/app_colors.dart';
-import 'package:islami/features/time/data/models/pray_model.dart';
+import 'package:islami/core/services/prayerTime_service/prayerTime_service.dart';
+import 'package:islami/features/time/data/models/prayer_model.dart';
 import 'package:islami/features/time/widgets/pray_card.dart';
 import 'package:islami/shared/customText.dart';
 
 class PrayersTime extends StatefulWidget {
-  const PrayersTime({super.key, required this.prayModel});
-  final PrayModel prayModel;
+  const PrayersTime({super.key});
 
   @override
   State<PrayersTime> createState() => _PrayersTimeState();
 }
 
 class _PrayersTimeState extends State<PrayersTime> {
-   final ScrollController _scrollController = ScrollController();
-  Timer? timer;
+  late Future<PrayerModel> _futurePrayers;  // Wiil be initialized in InitState
 
-
-   void initState() {
+  @override
+  void initState() {
     super.initState();
+    _futurePrayers = PrayertimeService(dio: Dio()).getPrayersTime();
+  }
 
-    // تشغيل التمرير التلقائي
-    timer = Timer.periodic(const Duration(milliseconds: 30), (timer) {
-      if (_scrollController.hasClients) {
-        double maxScroll = _scrollController.position.maxScrollExtent;
-        double currentScroll = _scrollController.offset;
-        double delta = 3.0;  // السرعه 
-        double nextScroll = currentScroll + delta;
-        if (nextScroll >= maxScroll) {
-          _scrollController.jumpTo(0); // لما يوصل للنهاية يرجع للبداية
-        } else {
-          _scrollController.jumpTo(nextScroll);
-        }
-      }
-    });
-  }
-   @override
-  void dispose() {
-    timer?.cancel();
-    _scrollController.dispose();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: 300,
+    return FutureBuilder<PrayerModel>(
+      future: _futurePrayers,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {  //if data is loading
+          return const Center(child: CircularProgressIndicator());
+        }
+
+        if (snapshot.hasError) {     //if there is an error
+          return const Center(
+            child: Text(
+              'حدث خطأ أثناء جلب مواعيد الصلاة ⚠️',
+              style: TextStyle(color: Colors.red, fontSize: 18),
+            ),
+          );
+        }
+
+        if (!snapshot.hasData || snapshot.data == null) {  //if there is no data
+          // لو مفيش بيانات
+          return const Center(child: Text('لا توجد بيانات حالياً'));
+        }
+
+        final prayerModel = snapshot.data!;
+       // if there is data display UI correctly
+        return Container(
+          margin: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
           decoration: BoxDecoration(
-            color: Color(0xff836A3E),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Container(
-            height: 300,
-            padding: EdgeInsets.only(top: 40,right: 5,left: 5),
-            decoration: BoxDecoration(
-              color: AppColors.goldPrimaryColor,
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(1300),
-                topRight: Radius.circular(1300),
-              ),
-            ),
-            child: Column(
-              children: [
-                Customtext(
-                  text: 'Prayers Time',
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                Gap(10),
-                Customtext(
-                  text: widget.prayModel.day,
-                  fontSize: 18,
-                  color: Colors.black,
-                ),
-                Gap(55),
-              SizedBox(
-                height: 145,
-                child: ListView.builder(
-                  controller: _scrollController,
-                  itemCount: 10,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                  return Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 10
-                    ),
-                    child: PrayCard(name: widget.prayModel.name, time: widget.prayModel.time));
-                },),
-              )
+            borderRadius: BorderRadius.circular(24),
+            gradient: const LinearGradient(
+              colors: [
+                Color(0xffD4AF37), // Gold
+                Color(0xff836A3E), // Brown-gold
               ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
             ),
-          ),
-        ),
-        Positioned(
-          top: 10,
-          left: 10,
-          child: Column(
-            children: [
-              Customtext(
-                text: widget.prayModel.birthDatel,
-                fontSize: 16,
-                color: Colors.white,
-              ),
-              Customtext(text: '2025', fontSize: 16, color: Colors.white),
-              
+            boxShadow: const [
+              BoxShadow(color: Colors.black26, blurRadius: 8, offset: Offset(2, 4)),
             ],
           ),
-        ),
-        Positioned(
-          top: 10,
-          right: 10,
-          child: Column(
+          child: Stack(
             children: [
-              Customtext(
-                text: widget.prayModel.hijriDate,
-                fontSize: 16,
-                color: Colors.white,
+              Container(
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(24),
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.goldPrimaryColor.withOpacity(0.9),
+                      const Color(0xff836A3E).withOpacity(0.9),
+                    ],
+                    begin: Alignment.bottomRight,
+                    end: Alignment.topLeft,
+                  ),
+                ),
+                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    const Customtext(
+                      text: 'Prayer Times',
+                      fontSize: 26,
+                      color: Colors.black,
+                      fontWeight: FontWeight.w900,
+                    ),
+                    const Gap(10),
+                    Customtext(
+                      text: prayerModel.weekday,
+                      fontSize: 25,
+                      color: Colors.black.withOpacity(0.7),
+                      fontWeight: FontWeight.w800,
+                      
+                    ),
+                    const Gap(10),
+                    Customtext(
+                      text: prayerModel.gregorianDate,
+                      fontSize: 18,
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                    const Gap(10),
+                     // Hijri Date (merge 3 texts for Day&Month&Year)
+                    Customtext(
+                      text: '${prayerModel.hijriDay} ${prayerModel.hijriMonth} ${prayerModel.hijriYear}',
+                      fontSize: 18,
+                      color: Colors.black.withOpacity(0.6),
+                    ),
+                    const Gap(25),
+                  // container for Prayers Times
+                    PrayCard(
+                      fajr: prayerModel.fajr,
+                      dhuhr: prayerModel.dhuhr,
+                      asr: prayerModel.asr,
+                      maghrib: prayerModel.maghrib,
+                      isha: prayerModel.ishaa,
+                      cityName: 'Cairo',  // doesn't coming from API
+                    ),
+                  ],
+                ),
               ),
-              Gap(5),
-              Customtext(text: '1447', fontSize: 16, color: Colors.white),
             ],
           ),
-        ),
-      ],
+        );
+      },
     );
   }
 }

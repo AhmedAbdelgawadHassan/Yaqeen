@@ -12,9 +12,9 @@ class AzkarCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
+      borderRadius: BorderRadius.circular(30),
       child:  Container(
           width: MediaQuery.of(context).size.width * 0.5-20,
-          height: 250,
           decoration: BoxDecoration(
             color: Colors.transparent,
             borderRadius: BorderRadius.circular(30),
@@ -24,13 +24,13 @@ class AzkarCard extends StatelessWidget {
             )
           ),
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 5),
+            padding: EdgeInsets.symmetric(vertical: 10),
             child: Column(
               children: [
                 Image(image: AssetImage(image),
-                width: 185,height: 185,),
+                width: 150,height: 150,),
                 Gap(5),
-                Customtext(text: text,color: Colors.white,fontSize: 18,)
+                Customtext(text: text,color: Colors.white,fontSize: 16,)
               ],
             ),
           ),
