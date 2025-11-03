@@ -15,9 +15,7 @@ class RecitersItem extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => RecitersSurasView(
-              reciterModel: reciterModel,
-            ),
+            builder: (context) => RecitersSurasView(reciterModel: reciterModel),
           ),
         );
       },
@@ -56,6 +54,7 @@ class RecitersItem extends StatelessWidget {
                 ),
               ),
             ),
+            // Reciter name
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
@@ -65,8 +64,8 @@ class RecitersItem extends StatelessWidget {
                     child: Customtext(
                       text: reciterModel.name,
                       color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                      fontWeight: FontWeight.w800,
                     ),
                   ),
                   // Play Icon
@@ -83,7 +82,15 @@ class RecitersItem extends StatelessWidget {
                       ],
                     ),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                RecitersSurasView(reciterModel: reciterModel),
+                          ),
+                        );
+                      },
                       icon: const Icon(
                         Icons.play_arrow_rounded,
                         color: Colors.white,

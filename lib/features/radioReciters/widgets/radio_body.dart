@@ -17,7 +17,7 @@ class _RadioBodyState extends State<RadioBody> {
   bool isPlaying = false;
   String? currentUrl; // لتحديد الإذاعة الحالية
 
-  RadioService radioService = RadioService(dio: Dio());
+  final RadioService radioService = RadioService(dio: Dio());
 
   Future<List<RadioModel>> getRadio() async => await radioService.getRadio();
 
@@ -48,27 +48,52 @@ class _RadioBodyState extends State<RadioBody> {
     return FutureBuilder<List<RadioModel>>(
       future: getRadio(),
       builder: (context, snapshot) {
-        if (snapshot.hasError) {
-          return const Center(child: Text("حدث خطأ أثناء تحميل الإذاعات"));
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Center(child: CircularProgressIndicator());
         }
+
+        if (snapshot.hasError) {
+          return const Center(
+            child: Text(
+              "حدث خطأ أثناء تحميل الإذاعات 😢",
+              style: TextStyle(color: Colors.red),
+            ),
+          );
+        }
+
         final radios = snapshot.data ?? [];
-        return Expanded(
-          child: ListView.builder(
-            padding: EdgeInsets.zero,
-            itemCount: radios.length,
-            itemBuilder: (context, index) {
-              final radio = radios[index];
-              final isThisPlaying =
-                  isPlaying && currentUrl == radio.radioSoundUrl;
-              return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: RadioItem(
-                  onPressed: () => _togglePlay(radio.radioSoundUrl),
-                  radioModel: radio,
-                  isPlaying: isThisPlaying,
-                ),
-              );
-            },
+
+        if (radios.isEmpty) {
+          return const Center(
+            child: Text(
+              "لا توجد إذاعات متاحة الآن 📻",
+              style: TextStyle(color: Colors.white70),
+            ),
+          );
+        }
+
+        return SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
+            child: Column(
+              children: List.generate(
+                radios.length,
+                (index) {
+                  final radio = radios[index];
+                  final isThisPlaying =
+                      isPlaying && currentUrl == radio.radioSoundUrl;
+
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child: RadioItem(
+                      onPressed: () => _togglePlay(radio.radioSoundUrl),
+                      radioModel: radio,
+                      isPlaying: isThisPlaying,
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
         );
       },

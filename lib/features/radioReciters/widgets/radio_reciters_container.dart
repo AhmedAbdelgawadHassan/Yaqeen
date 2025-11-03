@@ -20,7 +20,7 @@ class RadioRecitersContainer extends StatelessWidget {
     return AnimatedContainer(
       alignment: Alignment.center,
       duration: const Duration(milliseconds: 600),
-      width: 165,
+      width: 155,
       height: 60,
       decoration: BoxDecoration(
         gradient: LinearGradient(

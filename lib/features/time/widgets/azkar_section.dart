@@ -15,24 +15,27 @@ class AzkarSection extends StatelessWidget {
       children: [
         Customtext(text: 'Azkar', fontSize: 20, color: Colors.white),
         Gap(25),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            AzkarCard(
-              image: 'assets/images/root/comment-bubble-icon 1.png',
-              text: 'Morning Azkar',
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => MorningAzkarView(),));
-              },
-            ),
-             AzkarCard(
-              image: 'assets/images/root/bell-icon 1.png',
-              text: 'Evening Azkar',
-              onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EveningAzkarView(),));
-              },
-            ),
-          ],
+        Padding(
+          padding: EdgeInsets.only(bottom: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              AzkarCard(
+                image: 'assets/images/root/comment-bubble-icon 1.png',
+                text: 'Morning Azkar',
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MorningAzkarView(),));
+                },
+              ),
+               AzkarCard(
+                image: 'assets/images/root/bell-icon 1.png',
+                text: 'Evening Azkar',
+                onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => EveningAzkarView(),));
+                },
+              ),
+            ],
+          ),
         ),
        
       ],

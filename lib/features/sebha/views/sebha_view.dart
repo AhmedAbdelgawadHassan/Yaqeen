@@ -18,15 +18,10 @@ class SebhaView extends StatefulWidget {
 class _SebhaViewState extends State<SebhaView> {
   String? selectedTasbeeh;
   int count = 0;
-  List tasbeehList = SebhaData.tasbeehList;   // list of tasbeeh (stored in tasbeeh_data.dart)
+  List tasbeehList = SebhaData.tasbeehList;
 
-  void incrementCount() {
-    setState(() => count++);
-  }
-
-  void resetCount() {
-    setState(() => count = 0);
-  }
+  void incrementCount() => setState(() => count++);
+  void resetCount() => setState(() => count = 0);
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +31,11 @@ class _SebhaViewState extends State<SebhaView> {
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(  // LinearGradient for background
+            gradient: LinearGradient(
               colors: [
-                Color(0xff0d1f1c),
+                Color(0xff091714),
                 Color(0xff12332d),
-                Colors.black,
+                Color(0xff000000),
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -48,162 +43,213 @@ class _SebhaViewState extends State<SebhaView> {
           ),
           child: Stack(
             children: [
-              // Background image
+              // خلفية خفيفة شفافة
               Positioned(
-                bottom: 0,
+                bottom: -10,
                 left: 0,
                 right: 0,
                 child: Opacity(
-                  opacity: 0.3,
+                  opacity: 0.15,
                   child: Image.asset(
                     'assets/images/root/img_bottom_decoration.png',
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
+
               Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
-              
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const LogoWidget(height: 100),
-                    const Gap(20),
-                    TasbeehConrainer(),
-                    const Gap(20),
-                
-                    // Dropdown Menu
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(15),
-                        border: Border.all(
-                          color: AppColors.goldPrimaryColor.withOpacity(0.8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 25),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      const LogoWidget(height: 90),
+                      const Gap(25),
+
+                      // حاوية التسبيح الجميلة (تذكر المستخدم بالنية)
+                      const TasbeehConrainer(),
+                      const Gap(25),
+
+                      // Dropdown لاختيار التسبيحة
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 15, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.08),
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(
+                            color: AppColors.goldPrimaryColor.withOpacity(0.9),
+                            width: 1.5,
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppColors.goldPrimaryColor
+                                  .withOpacity(0.2),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: selectedTasbeeh,
+                            hint: const Center(
+                              child: Text(
+                                'اختر التسبيحة 🌸',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            isExpanded: true,
+                            icon: const Icon(
+                              Icons.expand_more_rounded,
+                              color: AppColors.goldPrimaryColor,
+                            ),
+                            dropdownColor: AppColors.darkPrimaryColor,
+                            borderRadius: BorderRadius.circular(15),
+                            items: tasbeehList
+                                .map(
+                                  (tasbeeh) => DropdownMenuItem<String>(
+                                    value: tasbeeh,
+                                    child: Center(
+                                      child: Text(
+                                        tasbeeh,
+                                        style: const TextStyle(
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedTasbeeh = value;
+                                count = 0;
+                              });
+                            },
+                          ),
                         ),
                       ),
-                      child: DropdownButtonHideUnderline(  
-                        child: DropdownButton<String>(
-                          value: selectedTasbeeh,
-                          hint: const Center(
-                            child: Text(
-                              'اختر التسبيحة',
-                              style: TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
+
+                      const Gap(40),
+
+                      // عرض التسبيحة المختارة
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 500),
+                        child: Container(
+                          key: ValueKey(selectedTasbeeh),
+                          width: double.infinity,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20, horizontal: 15),
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                AppColors.goldPrimaryColor.withOpacity(0.95),
+                                AppColors.goldPrimaryColor.withOpacity(0.75),
+                              ],
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                            borderRadius: BorderRadius.circular(25),
+                            boxShadow: [
+                              BoxShadow(
+                                color: AppColors.goldPrimaryColor
+                                    .withOpacity(0.4),
+                                blurRadius: 18,
+                                offset: const Offset(0, 6),
+                              ),
+                            ],
+                          ),
+                          child: Text(
+                            selectedTasbeeh ?? '🌿 اختر تسبيحة من القائمة 🌿',
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                              color: AppColors.darkPrimaryColor,
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const Gap(45),
+
+                      // العداد
+                      TesbeehCounterContainer(count: count.toString()),
+                      const Gap(50),
+
+                      // أزرار التحكم
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // زر التسبيح
+                          GestureDetector(
+                            onTap: incrementCount,
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              padding: const EdgeInsets.all(28),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    AppColors.goldPrimaryColor,
+                                    AppColors.goldPrimaryColor
+                                        .withOpacity(0.8),
+                                  ],
+                                ),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: AppColors.goldPrimaryColor
+                                        .withOpacity(0.4),
+                                    blurRadius: 12,
+                                    offset: const Offset(0, 4),
+                                  ),
+                                ],
+                              ),
+                              child: const Icon(
+                                Icons.add,
+                                color: Colors.black,
+                                size: 36,
                               ),
                             ),
                           ),
-                          isExpanded: true,
-                          icon: const Icon(Icons.keyboard_arrow_down_rounded,
-                              color: AppColors.goldPrimaryColor),
-                          dropdownColor: AppColors.darkPrimaryColor,
-                          items: tasbeehList         // the list of tasbeeh that will displayed in dropdown
-                              .map(
-                                (tasbeeh) => DropdownMenuItem<String>(
-                                  value: tasbeeh,
-                                  child: Text(
-                                    tasbeeh,
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                    ),
-                                    textAlign: TextAlign.center,
+
+                          const Gap(60),
+
+                          // زر إعادة التصفير
+                          GestureDetector(
+                            onTap: resetCount,
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              padding: const EdgeInsets.all(24),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.white.withOpacity(0.9),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.white.withOpacity(0.3),
+                                    blurRadius: 12,
+                                    offset: const Offset(0, 4),
                                   ),
-                                ),
-                              )
-                              .toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedTasbeeh = value;
-                              count = 0;
-                            });
-                          },
-                        ),
-                      ),
-                    ),
-                
-                    const Gap(40),
-                
-                    // Display Selected Tasbeeh
-                    AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      curve: Curves.easeOut,
-                      width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            AppColors.goldPrimaryColor.withOpacity(0.9),
-                            AppColors.goldPrimaryColor.withOpacity(0.7),
-                          ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppColors.goldPrimaryColor.withOpacity(0.4),
-                            blurRadius: 15,
-                            offset: const Offset(0, 6),
+                                ],
+                              ),
+                              child: const Icon(
+                                Icons.refresh_rounded,
+                                color: AppColors.darkPrimaryColor,
+                                size: 30,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                      child: Text(
-                        selectedTasbeeh ?? 'اختر تسبيحة من القائمة',
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          color: AppColors.darkPrimaryColor,
-                        ),
-                      ),
-                    ),
-                
-                    const Gap(50),
-                    // Counter Box
-                  TesbeehCounterContainer(
-                    count: count.toString(),
+                    ],
                   ),
-                    const Gap(40),
-                
-                    // Buttons
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        // Increment
-                        ElevatedButton(
-                          onPressed: incrementCount,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColors.goldPrimaryColor,
-                            shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(18),
-                            elevation: 8,
-                          ),
-                          child:
-                              const Icon(Icons.add, color: Colors.black, size: 36),
-                        ),
-                
-                        const Gap(60),
-                
-                        // Reset
-                        ElevatedButton(
-                          onPressed: resetCount,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.white,
-                            shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(18),
-                            elevation: 8,
-                          ),
-                          child: const Icon(Icons.refresh,
-                              color: AppColors.darkPrimaryColor, size: 32),
-                        ),
-                      ],
-                    ),
-                  ],
                 ),
               ),
             ],
