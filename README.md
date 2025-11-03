@@ -32,7 +32,8 @@ It provides a comprehensive spiritual experience that brings essential Islamic c
 ## 🧱 Tech Stack
 
 - **Framework:** Flutter (Dart)
-- **State Management:** setState / Provider / (your preferred)
+- **State Management:** setState
+  
 - **Networking:** Dio
 - **Audio Player:** audioplayers
 - **UI Components:** Custom Widgets, Tailored Islamic Design
@@ -41,4 +42,5 @@ It provides a comprehensive spiritual experience that brings essential Islamic c
 ---
 
 ## 🧩 Folder Structure
+
 
