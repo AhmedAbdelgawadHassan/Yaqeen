@@ -1,16 +1,44 @@
-# islami
+# 📱 Yaqeen – Islamic App
 
-A new Flutter project.
+**Yaqeen** is a modern and elegant Islamic mobile application built with Flutter.  
+It provides a comprehensive spiritual experience that brings essential Islamic content into one beautifully designed app.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🌙 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📖 **Full Quran (Text)**
+  - Complete Quran available as text (Uthmani script style).
+  - Smooth reading experience with adjustable font and layout.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- 🎧 **Reciters & Audio Quran**
+  - A wide collection of reciters.
+  - Stream or download recitations directly from the app.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- 🔹 **Prayer Times**
+  - Accurate daily prayer timings based on the user’s location.
+
+- 🔹 **Azkar (Morning & Evening)**
+  - Authentic daily Azkar for spiritual reflection.
+
+- 🌿 **Hadith Collection**
+  - Selected authentic Hadiths for daily inspiration.
+
+- 🔹 **Electronic Tasbeeh**
+  - Keep count of your daily remembrance (Dhikr).
+
+---
+
+## 🧱 Tech Stack
+
+- **Framework:** Flutter (Dart)
+- **State Management:** setState / Provider / (your preferred)
+- **Networking:** Dio
+- **Audio Player:** audioplayers
+- **UI Components:** Custom Widgets, Tailored Islamic Design
+- **APIs:** [mp3quran.net API](https://mp3quran.net/api/)
+
+---
+
+## 🧩 Folder Structure
+
