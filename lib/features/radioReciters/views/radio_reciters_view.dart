@@ -25,7 +25,6 @@ class _RadioRecitersViewState extends State<RadioRecitersView> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Gap(10),
               LogoWidget(
                 height: 100,
               ),

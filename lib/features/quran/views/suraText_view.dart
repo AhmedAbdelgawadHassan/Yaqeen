@@ -11,11 +11,13 @@ class SuratextView extends StatelessWidget {
     required this.suraNameEn,
     required this.suraNameAr,
     required this.suraText,
+    required this.suraIndex,
   });
 
   final String suraNameEn;
   final String suraNameAr;
   final String suraText;
+  final String suraIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +63,6 @@ class SuratextView extends StatelessWidget {
                           color: AppColors.goldPrimaryColor.withOpacity(0.7),
                           width: 1.4,
                         ),
-
                       ),
                       padding: const EdgeInsets.symmetric(
                         vertical: 15,
@@ -114,7 +115,10 @@ class SuratextView extends StatelessWidget {
                           ),
                           const Gap(20),
                           Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 10,
+                              vertical: 10,
+                            ),
                             decoration: BoxDecoration(
                               color: Colors.white.withOpacity(0.07),
                               borderRadius: BorderRadius.circular(20),
@@ -129,9 +133,10 @@ class SuratextView extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: Customtext(
-                              text:
-                                  "         بسم الله الرحمن الرحيم\n$suraText", // عشان كل السور تبدا ببسم الله الرحمن الرحيم
+                            child: Customtext(    //سورة التوبة مش بتبدا ببسم الله الرحمن الرحيم 
+                              text: suraIndex == '9'    // index بتاع سورة التوبة 
+                                  ? suraText
+                                  : "         بسم الله الرحمن الرحيم\n$suraText", // عشان كل السور تبدا ببسم الله الرحمن الرحيم
                               maxLines: 2000,
                               fontSize: 22,
                               height: 2.2,

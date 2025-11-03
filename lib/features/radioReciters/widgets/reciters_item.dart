@@ -1,49 +1,101 @@
 import 'package:flutter/material.dart';
 import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/features/radioReciters/data/models/reciters_model.dart';
+import 'package:islami/features/radioReciters/views/reciters_suras_view.dart';
 import 'package:islami/shared/customText.dart';
 
 class RecitersItem extends StatelessWidget {
-  const RecitersItem({super.key, required this.recitersModel});
-  final RecitersModel recitersModel;
+  const RecitersItem({super.key, required this.reciterModel});
+  final ReciterModel reciterModel;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 140,
-      alignment: Alignment.bottomCenter,
-      decoration: BoxDecoration(
-        color: AppColors.goldPrimaryColor,
-        borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.white,
-            blurRadius: 10,
-            offset: const Offset(0, 3),
-        )]
-      ),
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          Positioned(
-            bottom:100,
-            left: 0,
-            right: 0,
-            child: Customtext(text: recitersModel.recitersName,color: Colors.black,fontSize: 20,)),
-          Image(image: AssetImage('assets/images/root/soundWave 1.png')),
-          // Positioned(
-          //   left: 120,
-          //   child: Row(
-          //     children: [
-          //       IconButton(onPressed: () {
-          //       }, icon: Icon(Icons.play_arrow,color: Colors.black,size: 60,)),
-          //        IconButton(onPressed: () {
-          //       }, icon: Icon(Icons.mic,color: Colors.black,size: 40,)),
-          //     ],
-          //   ),
-          // )
-        ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => RecitersSurasView(
+              reciterModel: reciterModel,
+            ),
+          ),
+        );
+      },
+      child: Container(
+        height: 150,
+        width: double.infinity,
+        margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: const LinearGradient(
+            colors: [
+              Color(0xffD4AF37), // Gold
+              Color(0xff836A3E), // Brown-gold
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black26,
+              blurRadius: 8,
+              offset: Offset(2, 4),
+            ),
+          ],
+        ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            // Sound wave
+            Positioned.fill(
+              child: Opacity(
+                opacity: 0.15, // to make sound wave transparent
+                child: Image.asset(
+                  'assets/images/root/soundWave 1.png',
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Customtext(
+                      text: reciterModel.name,
+                      color: Colors.black,
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  // Play Icon
+                  Container(
+                    decoration: BoxDecoration(
+                      color: AppColors.darkPrimaryColor,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black26,
+                          blurRadius: 6,
+                          offset: Offset(2, 3),
+                        ),
+                      ],
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.play_arrow_rounded,
+                        color: Colors.white,
+                        size: 32,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

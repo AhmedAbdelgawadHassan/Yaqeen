@@ -1,8 +1,16 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:islami/shared/customText.dart';
 
 class RadioRecitersContainer extends StatelessWidget {
-  const RadioRecitersContainer({super.key, required this.containerColor, required this.textColor, required this.text});
+  const RadioRecitersContainer({
+    super.key,
+    required this.containerColor,
+    required this.textColor,
+    required this.text,
+  });
+
   final Color containerColor;
   final Color textColor;
   final String text;
@@ -11,20 +19,42 @@ class RadioRecitersContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedContainer(
       alignment: Alignment.center,
-      duration: Duration(milliseconds: 700),
-      width: 175,
+      duration: const Duration(milliseconds: 600),
+      width: 180,
+      height: 60,
       decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.white,width: 1),
+        gradient: LinearGradient(
+          colors: [
+            containerColor.withOpacity(0.9),
+            containerColor.withOpacity(0.7),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: Colors.white.withOpacity(0.7), width: 1.2),
         boxShadow: [
           BoxShadow(
-            color: Colors.white,
-            blurRadius: 5,
-          )
-        ]
+            color: containerColor.withOpacity(0.3),
+            blurRadius: 10,
+            spreadRadius: 2,
+            offset: const Offset(3, 4),
+          ),
+        ],
       ),
-      child: Customtext(text: text,fontSize: 17,color: textColor),
-      );
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.mic, color: Colors.white, size: 22),
+          const SizedBox(width: 8),
+          Customtext(
+            text: text,
+            fontSize: 18,
+            color: textColor,
+            fontWeight: FontWeight.bold,
+          ),
+        ],
+      ),
+    );
   }
 }

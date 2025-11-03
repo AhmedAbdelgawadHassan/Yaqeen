@@ -42,19 +42,18 @@ class _RadioItemState extends State<RadioItem>
     super.dispose();
   }
 
-  // build wave bar
   Widget _buildWaveBar(int index) {
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
         final wave = sin((_controller.value * pi * 2) + (index * 0.6));
-        final height = 10 + (wave.abs() * 30); // ارتفاع الموجة
+        final height = 10 + (wave.abs() * 30);
         return Container(
-          width: 8,
+          width: 6,
           height: height,
           decoration: BoxDecoration(
             color: widget.isPlaying
-                ? AppColors.darkPrimaryColor
+                ? AppColors.goldPrimaryColor
                 : Colors.grey.shade400,
             borderRadius: BorderRadius.circular(8),
           ),
@@ -66,52 +65,60 @@ class _RadioItemState extends State<RadioItem>
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
-      duration: const Duration(milliseconds: 00),
+      duration: const Duration(milliseconds: 500),
       curve: Curves.easeInOut,
       width: double.infinity,
-      height: 190,
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      height: 200,
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: widget.isPlaying
               ? [
-                  AppColors.goldPrimaryColor.withOpacity(0.9),
-                  Colors.amber.shade200,
+                  AppColors.goldPrimaryColor.withOpacity(0.95),
+                  const Color(0xFFFFF3C0),
                 ]
               : [
-                  Colors.white.withOpacity(0.95),
-                  AppColors.goldPrimaryColor.withOpacity(0.7),
+                  Colors.white,
+                  AppColors.goldPrimaryColor.withOpacity(0.2),
                 ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
-        borderRadius: BorderRadius.circular(24),
+        borderRadius: BorderRadius.circular(26),
+        border: Border.all(
+          color: widget.isPlaying
+              ? AppColors.goldPrimaryColor.withOpacity(0.8)
+              : Colors.white70,
+          width: 1.5,
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 10,
-            offset: const Offset(0, 5),
+            color: widget.isPlaying
+                ? AppColors.goldPrimaryColor.withOpacity(0.4)
+                : Colors.black12,
+            blurRadius: 15,
+            offset: const Offset(0, 6),
           ),
         ],
       ),
       child: InkWell(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(26),
         onTap: widget.onPressed,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Gap(20),
+            const Gap(10),
             Customtext(
               text: widget.radioModel.radioName,
-              color: Colors.black87,
-              fontSize: 20,
+              color: widget.isPlaying ? Colors.black : Colors.black87,
+              fontSize: 21,
               fontWeight: FontWeight.bold,
             ),
-            // موجات الصوت بعرض الكونتينر كله
+            const Gap(8),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: SizedBox(
-                height: 60,
+                height: 50,
                 width: double.infinity,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -122,18 +129,37 @@ class _RadioItemState extends State<RadioItem>
                 ),
               ),
             ),
-            IconButton(
-              onPressed: widget.onPressed,
-              iconSize: 55,
-              icon: Icon(
-                widget.isPlaying
-                    ? Icons.pause_circle_filled_rounded
-                    : Icons.play_circle_fill_rounded,
-                color: widget.isPlaying
-                    ? Colors.green.shade700
-                    : Colors.black.withOpacity(0.8),
+            const Gap(6),
+            Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: widget.isPlaying
+                      ? [Colors.green.shade700, Colors.greenAccent.shade400]
+                      : [Colors.black87, Colors.grey.shade700],
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: widget.isPlaying
+                        ? Colors.greenAccent.withOpacity(0.4)
+                        : Colors.black12,
+                    blurRadius: 12,
+                    offset: const Offset(0, 4),
+                  )
+                ],
+              ),
+              child: IconButton(
+                onPressed: widget.onPressed,
+                iconSize: 55,
+                icon: Icon(
+                  widget.isPlaying
+                      ? Icons.pause_rounded
+                      : Icons.play_arrow_rounded,
+                  color: Colors.white,
+                ),
               ),
             ),
+            const Gap(8),
           ],
         ),
       ),

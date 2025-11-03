@@ -1,13 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:islami/core/constants/app_colors.dart';
 import 'package:islami/features/onboarding/views/onboardingRoot.dart';
 
 
-
 void main() async {
 
   runApp(const Islami());
+
 }
 
 

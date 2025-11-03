@@ -54,6 +54,7 @@ class _SuraslistSectionState extends State<SuraslistSection> {
                         builder: (context) => SuratextView(
                           suraNameAr: widget.suraList[index].suraNameAr,
                           suraNameEn: widget.suraList[index].suraNameEn,
+                          suraIndex: widget.suraList[index].suraIndex,
                           suraText: formattedContent,
                         ),
                       ),
