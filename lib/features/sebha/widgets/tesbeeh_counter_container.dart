@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:islami/core/constants/app_colors.dart';
 
@@ -8,8 +10,8 @@ class TesbeehCounterContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Container(
-                      width: 130,
-                      height: 110,
+                      width: 100,
+                      height: 90,
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -30,7 +32,7 @@ class TesbeehCounterContainer extends StatelessWidget {
                       child: Text(
                           count,
                         style: TextStyle(
-                          fontSize: 45,
+                          fontSize: 35,
                           fontWeight: FontWeight.bold,
                           color: AppColors.darkPrimaryColor,
                           shadows: [

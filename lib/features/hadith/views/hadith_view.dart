@@ -180,7 +180,7 @@ class _HadithViewState extends State<HadithView> {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
                             child: Container(
                               width: MediaQuery.of(context).size.width * 0.75,
                               padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 0),

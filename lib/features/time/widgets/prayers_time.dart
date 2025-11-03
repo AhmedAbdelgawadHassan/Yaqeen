@@ -43,7 +43,6 @@ class _PrayersTimeState extends State<PrayersTime> {
         }
 
         if (!snapshot.hasData || snapshot.data == null) {  //if there is no data
-          // لو مفيش بيانات
           return const Center(child: Text('لا توجد بيانات حالياً'));
         }
 
@@ -80,7 +79,7 @@ class _PrayersTimeState extends State<PrayersTime> {
                     end: Alignment.topLeft,
                   ),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

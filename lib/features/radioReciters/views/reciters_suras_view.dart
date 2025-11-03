@@ -21,7 +21,7 @@ class _RecitersSurasViewState extends State<RecitersSurasView> {
   final TextEditingController _searchController = TextEditingController();
   String _searchQuery = '';
 
-  final List<String> surahNames = [
+  final List<String> surahNames = [   // list of surah names 
     "الفاتحة", "البقرة", "آل عمران", "النساء", "المائدة", "الأنعام", "الأعراف", "الأنفال", "التوبة", "يونس",
     "هود", "يوسف", "الرعد", "إبراهيم", "الحجر", "النحل", "الإسراء", "الكهف", "مريم", "طه",
     "الأنبياء", "الحج", "المؤمنون", "النور", "الفرقان", "الشعراء", "النمل", "القصص", "العنكبوت", "الروم",

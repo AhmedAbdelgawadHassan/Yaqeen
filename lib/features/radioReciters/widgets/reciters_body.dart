@@ -38,7 +38,7 @@ class _RecitersBodyState extends State<RecitersBody> {
       return  Expanded(
         child: ListView.builder(
           padding: EdgeInsets.zero,
-          itemCount: 20,
+          itemCount: reciters.length,
           itemBuilder: (context, index) {
           return  Padding(
             padding: EdgeInsets.symmetric(vertical: 10),

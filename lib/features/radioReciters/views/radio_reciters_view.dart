@@ -42,18 +42,16 @@ class _RadioRecitersViewState extends State<RadioRecitersView> {
                         currentIndex = index;
                         setState(() {});
                       },
-                      child: Center(
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 7.5),
-                          child: RadioRecitersContainer(
-                            containerColor: currentIndex == index
-                                ? AppColors.goldPrimaryColor
-                                : Color(0xff2D2C2B),
-                            textColor: currentIndex == index
-                                ? Colors.black
-                                : Colors.white,
-                            text: index == 0 ? 'Reciters' : 'Radio',  // change text according to index
-                          ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 7.5),
+                        child: RadioRecitersContainer(
+                          containerColor: currentIndex == index
+                              ? AppColors.goldPrimaryColor
+                              : Color(0xff2D2C2B),
+                          textColor: currentIndex == index
+                              ? Colors.black
+                              : Colors.white,
+                          text: index == 0 ? 'Reciters' : 'Radio',  // change text according to index
                         ),
                       ),
                     );

@@ -18,7 +18,7 @@ class TimeView extends StatelessWidget {
               children: [
                 LogoWidget(height: 100),
                 PrayersTime(),
-                Gap(25),
+                Gap(10),
                 AzkarSection(),
               ],
             ),

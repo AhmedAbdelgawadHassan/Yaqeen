@@ -61,16 +61,17 @@ class _SebhaViewState extends State<SebhaView> {
                   ),
                 ),
               ),
-              SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     const LogoWidget(height: 100),
                     const Gap(20),
                     TasbeehConrainer(),
-                    const Gap(30),
-
+                    const Gap(20),
+                
                     // Dropdown Menu
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -123,15 +124,15 @@ class _SebhaViewState extends State<SebhaView> {
                         ),
                       ),
                     ),
-
+                
                     const Gap(40),
-
+                
                     // Display Selected Tasbeeh
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 500),
                       curve: Curves.easeOut,
                       width: double.infinity,
-                      padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 10),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
@@ -161,14 +162,14 @@ class _SebhaViewState extends State<SebhaView> {
                         ),
                       ),
                     ),
-
+                
                     const Gap(50),
                     // Counter Box
                   TesbeehCounterContainer(
                     count: count.toString(),
                   ),
                     const Gap(40),
-
+                
                     // Buttons
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -179,22 +180,22 @@ class _SebhaViewState extends State<SebhaView> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColors.goldPrimaryColor,
                             shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(25),
+                            padding: const EdgeInsets.all(18),
                             elevation: 8,
                           ),
                           child:
                               const Icon(Icons.add, color: Colors.black, size: 36),
                         ),
-
+                
                         const Gap(60),
-
+                
                         // Reset
                         ElevatedButton(
                           onPressed: resetCount,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             shape: const CircleBorder(),
-                            padding: const EdgeInsets.all(25),
+                            padding: const EdgeInsets.all(18),
                             elevation: 8,
                           ),
                           child: const Icon(Icons.refresh,

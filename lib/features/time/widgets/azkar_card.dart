@@ -28,9 +28,9 @@ class AzkarCard extends StatelessWidget {
             child: Column(
               children: [
                 Image(image: AssetImage(image),
-                width: 150,height: 150,),
+                width: 130,height: 130,),
                 Gap(5),
-                Customtext(text: text,color: Colors.white,fontSize: 16,)
+                Customtext(text: text,color: Colors.white,fontSize: 15,)
               ],
             ),
           ),
